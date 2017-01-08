@@ -2,6 +2,7 @@ package edu.lelyak.service;
 
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.repository.WeatherStationRepositoryMock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,8 +10,8 @@ import java.util.List;
 @Service
 public class WeatherStationService {
 
-//    @Autowired
-    private WeatherStationRepositoryMock weatherRepository = new WeatherStationRepositoryMock();
+    @Autowired
+    private WeatherStationRepositoryMock weatherRepository;
 
     public List<WeatherStation> getAllStations() {
         return weatherRepository.getStations();

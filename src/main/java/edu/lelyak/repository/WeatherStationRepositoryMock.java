@@ -2,6 +2,7 @@ package edu.lelyak.repository;
 
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.utills.RandomGenerator;
+import edu.lelyak.utills.exception.WeatherStationNotFoundException;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
@@ -27,6 +28,11 @@ public class WeatherStationRepositoryMock {
     );
 
     public WeatherStation getStation(String id) {
+        if (stations.stream()
+                .noneMatch(s -> s.getId().equals(id))) {
+            throw new WeatherStationNotFoundException(id);
+        }
+
         return stations.stream()
                 .filter(s -> s.getId().equals(id))
                 .findFirst()

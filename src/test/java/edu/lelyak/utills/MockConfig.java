@@ -3,10 +3,12 @@ package edu.lelyak.utills;
 import edu.lelyak.service.WeatherStationService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 @Configuration
+@ComponentScan(basePackages = "edu.lelyak.repository")
 public class MockConfig {
 
     //**************************** MOCK BEANS ******************************
