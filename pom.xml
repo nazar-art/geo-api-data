@@ -44,12 +44,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--DB-->
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>-->
-
         <!--UTILS-->
         <dependency>
             <groupId>org.projectlombok</groupId>

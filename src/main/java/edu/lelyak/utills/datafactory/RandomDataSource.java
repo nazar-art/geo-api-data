@@ -19,15 +19,12 @@ public final class RandomDataSource {
 
     public Object fillEntity(Object entity) {
         if (entity != null) {
-
             Field[] fields = entity.getClass().getDeclaredFields();
             AccessibleObject.setAccessible(fields, true);
 
             for (Field field : fields) {
                 if (field.isAnnotationPresent(RandomData.class)) {
-
                     RandomData data = field.getAnnotation(RandomData.class);
-//                    field.setAccessible(true);
 
                     switch (data.type()) {
                         case NUMERIC:
