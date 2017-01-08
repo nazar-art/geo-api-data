@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.geo.GeoJsonPoint;
 
 @Data
 @Builder
@@ -14,5 +13,6 @@ public class WeatherStation {
 
     private String id;
     private String name;
-    private GeoJsonPoint location;
+
+    private GeoInformation geoInformation;
 }

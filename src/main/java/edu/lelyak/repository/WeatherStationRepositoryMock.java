@@ -1,7 +1,8 @@
 package edu.lelyak.repository;
 
 import edu.lelyak.model.WeatherStation;
-import edu.lelyak.utills.RandomUtilities;
+import edu.lelyak.utills.RandomGenerator;
+import lombok.Getter;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -11,22 +12,19 @@ import java.util.List;
 @Repository
 public class WeatherStationRepositoryMock {
 
+    @Getter
     private List<WeatherStation> stations = new ArrayList<>(
             Arrays.asList(
-                    new WeatherStation("huston", "Huston station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("washington", "Washington station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("dakota", "Dakota station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("alaska", "Alaska station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("montana", "Montana station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("oregon", "Oregon station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("nevada", "Nevada station", RandomUtilities.getRandomGeoPoint()),
-                    new WeatherStation("colorado", "Colorado station", RandomUtilities.getRandomGeoPoint())
+                    new WeatherStation("huston", "Huston station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("washington", "Washington station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("dakota", "Dakota station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("alaska", "Alaska station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("montana", "Montana station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("oregon", "Oregon station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("nevada", "Nevada station", RandomGenerator.getRandomGeoInformation()),
+                    new WeatherStation("colorado", "Colorado station", RandomGenerator.getRandomGeoInformation())
             )
     );
-
-    public List<WeatherStation> getStationsMock() {
-        return stations;
-    }
 
     public WeatherStation getStation(String id) {
         return stations.stream()
@@ -51,6 +49,11 @@ public class WeatherStationRepositoryMock {
 
     public void deleteStation(String id) {
         stations.removeIf(s -> s.getId().equals(id));
+    }
+
+    public static void main(String[] args) {
+        WeatherStationRepositoryMock mock = new WeatherStationRepositoryMock();
+        System.out.println(mock.getStations());
     }
 
 }

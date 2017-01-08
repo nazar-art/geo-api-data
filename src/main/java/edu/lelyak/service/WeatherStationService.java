@@ -14,7 +14,7 @@ public class WeatherStationService {
     private WeatherStationRepositoryMock weatherRepository;
 
     public List<WeatherStation> getAllStations() {
-        return weatherRepository.getStationsMock();
+        return weatherRepository.getStations();
     }
 
     public WeatherStation getStation(String id) {
