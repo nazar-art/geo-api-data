@@ -51,9 +51,4 @@ public class WeatherStationRepositoryMock {
         stations.removeIf(s -> s.getId().equals(id));
     }
 
-    public static void main(String[] args) {
-        WeatherStationRepositoryMock mock = new WeatherStationRepositoryMock();
-        System.out.println(mock.getStations());
-    }
-
 }

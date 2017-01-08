@@ -1,4 +1,4 @@
-package edu.lelyak.controller;
+package edu.lelyak.controllers;
 
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.service.WeatherStationService;
