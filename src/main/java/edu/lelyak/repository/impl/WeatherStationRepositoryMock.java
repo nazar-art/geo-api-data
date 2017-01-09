@@ -1,6 +1,7 @@
-package edu.lelyak.repository;
+package edu.lelyak.repository.impl;
 
 import edu.lelyak.model.WeatherStation;
+import edu.lelyak.repository.IStationRepository;
 import edu.lelyak.utills.RandomGenerator;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class WeatherStationRepositoryMock {
+public class WeatherStationRepositoryMock implements IStationRepository {
 
     @Getter
     private List<WeatherStation> stations = new ArrayList<>(
@@ -27,6 +28,7 @@ public class WeatherStationRepositoryMock {
             )
     );
 
+    @Override
     public WeatherStation getStation(String id) {
         if (stations.stream()
                 .noneMatch(s -> s.getId().equals(id))) {
@@ -39,10 +41,12 @@ public class WeatherStationRepositoryMock {
                 .get();
     }
 
+    @Override
     public void addStation(WeatherStation station) {
         stations.add(station);
     }
 
+    @Override
     public void updateStation(String id, WeatherStation station) {
         for (int index = 0; index < stations.size(); index++) {
             WeatherStation current = stations.get(index);
@@ -53,6 +57,7 @@ public class WeatherStationRepositoryMock {
         }
     }
 
+    @Override
     public void deleteStation(String id) {
         stations.removeIf(s -> s.getId().equals(id));
     }

@@ -1,7 +1,7 @@
 package edu.lelyak.controllers;
 
 import edu.lelyak.model.WeatherStation;
-import edu.lelyak.service.WeatherStationService;
+import edu.lelyak.service.impl.WeatherStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

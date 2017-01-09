@@ -1,6 +1,6 @@
 package edu.lelyak.utills;
 
-import edu.lelyak.service.WeatherStationService;
+import edu.lelyak.service.impl.WeatherStationService;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
