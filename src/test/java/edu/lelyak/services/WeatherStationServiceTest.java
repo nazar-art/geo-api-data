@@ -5,6 +5,7 @@ import edu.lelyak.model.WeatherStation;
 import edu.lelyak.service.impl.WeatherStationService;
 import edu.lelyak.utills.MockConfig;
 import edu.lelyak.utills.Real;
+import edu.lelyak.utills.constants.*;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,31 +27,27 @@ public class WeatherStationServiceTest {
 
     private WeatherStation testStationSample;
 
-    public static final String STATION_ID = "testStationId";
-    public static final String STATION_NAME = "Test Station Name";
-    public static final double COORDINATE_VALUE = 45D;
-    public static final int TEMPERATURE = 15;
-    public static final int WIND_SPEED = 25;
+    public static final double DELTA_FOR_DOUBLE_COMPARISON = 0.001;
 
 
     @Before
     public void setUp() throws Exception {
         GeoInformation geoInformation = GeoInformation.builder()
-                .latitude(COORDINATE_VALUE)
-                .longevity(COORDINATE_VALUE)
-                .temperature(TEMPERATURE)
-                .windSpeed(WIND_SPEED)
+                .latitude(Coordinates.COORDINATE_TEST_VALUE)
+                .longevity(Coordinates.COORDINATE_TEST_VALUE)
+                .temperature(Temperatures.TEMPERATURE_TEST_VALUE)
+                .windSpeed(WindSpeeds.WIND_SPEED_TEST)
                 .build();
         testStationSample = WeatherStation.builder()
-                .id(STATION_ID)
-                .name(STATION_NAME)
+                .id(Ids.ID_TEST_STATION)
+                .name(Names.NAME_STATION_TEST)
                 .geoInformation(geoInformation)
                 .build();
     }
 
     @Test(expected = WeatherStationNotFoundException.class)
     public void testThatWeatherStationIsNotPresented() throws Exception {
-        weatherService.getStation(STATION_ID);
+        weatherService.getStation(Ids.ID_TEST_STATION);
     }
 
     @Test
@@ -62,32 +59,36 @@ public class WeatherStationServiceTest {
     public void testAddNewWeatherStation() throws Exception {
         weatherService.addStation(testStationSample);
 
-        Assert.assertEquals(STATION_ID, weatherService.getStation(STATION_ID).getId());
-        Assert.assertEquals(STATION_NAME, weatherService.getStation(STATION_ID).getName());
-        Assert.assertEquals(COORDINATE_VALUE, weatherService.getStation(STATION_ID).getGeoInformation().getLatitude(), 0.001);
-        Assert.assertEquals(COORDINATE_VALUE, weatherService.getStation(STATION_ID).getGeoInformation().getLongevity(), 0.001);
-        Assert.assertEquals(TEMPERATURE, weatherService.getStation(STATION_ID).getGeoInformation().getTemperature());
-        Assert.assertEquals(WIND_SPEED, weatherService.getStation(STATION_ID).getGeoInformation().getWindSpeed());
+        Assert.assertEquals(Ids.ID_TEST_STATION, weatherService.getStation(Ids.ID_TEST_STATION).getId());
+        Assert.assertEquals(Names.NAME_STATION_TEST, weatherService.getStation(Ids.ID_TEST_STATION).getName());
+        Assert.assertEquals(Coordinates.COORDINATE_TEST_VALUE,
+                weatherService.getStation(Ids.ID_TEST_STATION).getGeoInformation().getLatitude(), DELTA_FOR_DOUBLE_COMPARISON);
+        Assert.assertEquals(Coordinates.COORDINATE_TEST_VALUE,
+                weatherService.getStation(Ids.ID_TEST_STATION).getGeoInformation().getLongevity(), DELTA_FOR_DOUBLE_COMPARISON);
+        Assert.assertEquals(Temperatures.TEMPERATURE_TEST_VALUE,
+                weatherService.getStation(Ids.ID_TEST_STATION).getGeoInformation().getTemperature());
+        Assert.assertEquals(WindSpeeds.WIND_SPEED_TEST, weatherService.getStation(Ids.ID_TEST_STATION).getGeoInformation().getWindSpeed());
     }
 
     @Test
     public void testUpdateWeatherStation() throws Exception {
         weatherService.addStation(testStationSample);
-        String update_name = "UPDATE NAME";
-        testStationSample.setName(update_name);
-        weatherService.updateStation(STATION_ID, testStationSample);
 
-        Assert.assertEquals(update_name, weatherService.getStation(STATION_ID).getName());
-        Assert.assertEquals(COORDINATE_VALUE, weatherService.getStation(STATION_ID).getGeoInformation().getLatitude(), 0.001);
+        testStationSample.setName(Names.NAME_STATION_UPDATED);
+        weatherService.updateStation(Ids.ID_TEST_STATION, testStationSample);
+
+        Assert.assertEquals(Names.NAME_STATION_UPDATED, weatherService.getStation(Ids.ID_TEST_STATION).getName());
+        Assert.assertEquals(Coordinates.COORDINATE_TEST_VALUE,
+                weatherService.getStation(Ids.ID_TEST_STATION).getGeoInformation().getLatitude(), DELTA_FOR_DOUBLE_COMPARISON);
     }
 
     @Test(expected = WeatherStationNotFoundException.class)
     public void testDeleteWeatherStation() throws Exception {
         weatherService.addStation(testStationSample);
-        Assert.assertEquals(STATION_ID, weatherService.getStation(STATION_ID).getId());
+        Assert.assertEquals(Ids.ID_TEST_STATION, weatherService.getStation(Ids.ID_TEST_STATION).getId());
 
-        weatherService.deleteStation(STATION_ID);
-        weatherService.getStation(STATION_ID);
+        weatherService.deleteStation(Ids.ID_TEST_STATION);
+        weatherService.getStation(Ids.ID_TEST_STATION);
     }
 
 }

@@ -30,8 +30,7 @@ public class WeatherStationRepositoryMock implements IStationRepository {
 
     @Override
     public WeatherStation getStation(String id) {
-        if (stations.stream()
-                .noneMatch(s -> s.getId().equals(id))) {
+        if (notExistsIntoDB(id)) {
             throw new WeatherStationNotFoundException(id);
         }
 
@@ -55,11 +54,26 @@ public class WeatherStationRepositoryMock implements IStationRepository {
                 return;
             }
         }
+        throw new WeatherStationNotFoundException(id);
     }
 
     @Override
     public void deleteStation(String id) {
+        if (notExistsIntoDB(id)) {
+            throw new WeatherStationNotFoundException(id);
+        }
+
         stations.removeIf(s -> s.getId().equals(id));
+    }
+
+
+    public int count() {
+        return stations.size();
+    }
+
+    private boolean notExistsIntoDB(String id) {
+        return stations.stream()
+                .noneMatch(s -> s.getId().equals(id));
     }
 
 }
