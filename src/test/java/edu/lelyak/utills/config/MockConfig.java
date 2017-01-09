@@ -1,10 +1,11 @@
-package edu.lelyak.utills;
+package edu.lelyak.utills.config;
 
 import edu.lelyak.model.GeoInformation;
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.repository.IStationRepository;
 import edu.lelyak.repository.impl.WeatherStationRepositoryMock;
 import edu.lelyak.service.impl.WeatherStationService;
+import edu.lelyak.utills.Real;
 import edu.lelyak.utills.constants.*;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
@@ -65,8 +66,8 @@ public class MockConfig {
                 .build());
 
         when(stationRepository.getStations()).thenReturn(stations);
-        when(stationRepository.count()).thenReturn(3);
         when(stationRepository.getStation(anyString())).thenReturn(station_1);
+        when(stationRepository.count()).thenReturn(stations.size());
 
         return stationRepository;
     }

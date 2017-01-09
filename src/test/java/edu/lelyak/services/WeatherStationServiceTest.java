@@ -3,7 +3,7 @@ package edu.lelyak.services;
 import edu.lelyak.model.GeoInformation;
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.service.impl.WeatherStationService;
-import edu.lelyak.utills.MockConfig;
+import edu.lelyak.utills.config.MockConfig;
 import edu.lelyak.utills.Real;
 import edu.lelyak.utills.constants.*;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
