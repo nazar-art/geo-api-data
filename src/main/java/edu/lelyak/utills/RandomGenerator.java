@@ -11,12 +11,14 @@ public final class RandomGenerator {
     private static RandomDataSource dataSource = new RandomDataSource();
 
     public static GeoInformation getRandomGeoInformation() {
-        GeoPoint geoPoint = new GeoPoint();
-        GeoRectangularPolygon rectangularPolygon = new GeoRectangularPolygon(geoPoint, geoPoint, geoPoint, geoPoint);
-
-        GeoInformation geoInformation = new GeoInformation();
-        geoInformation.setLocation(new GeoLocation());
-        geoInformation.setRectangularPolygon(rectangularPolygon);
+        GeoPoint geoPoint = GeoPoint.builder().build();
+        GeoInformation geoInformation = GeoInformation.builder().location(GeoLocation.builder().build())
+                .rectangularPolygon(GeoRectangularPolygon.builder()
+                        .first(geoPoint)
+                        .second(geoPoint)
+                        .third(geoPoint)
+                        .four(geoPoint).build()
+                ).build();
 
         return (GeoInformation) dataSource.randomiseEntity(geoInformation);
     }
