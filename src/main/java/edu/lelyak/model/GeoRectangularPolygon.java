@@ -1,9 +1,6 @@
 package edu.lelyak.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
@@ -11,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GeoRectangularPolygon {
 
+    @Setter(AccessLevel.NONE)
     private final String TYPE = "Polygon";
 
     private GeoPoint first;

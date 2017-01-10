@@ -3,10 +3,7 @@ package edu.lelyak.model;
 import edu.lelyak.utills.constants.Coordinates;
 import edu.lelyak.utills.datafactory.RandomData;
 import edu.lelyak.utills.datafactory.RandomType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
@@ -14,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GeoPoint {
 
+    @Setter(AccessLevel.NONE)
     private final String TYPE = "Point";
 
     @RandomData(type = RandomType.NUMERIC_DOUBLE, min = Coordinates.MIN_COORDINATE, max = Coordinates.MAX_COORDINATE)
