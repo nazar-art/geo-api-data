@@ -1,6 +1,7 @@
 package edu.lelyak.utills.config;
 
 import edu.lelyak.model.GeoInformation;
+import edu.lelyak.model.GeoLocation;
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.repository.IStationRepository;
 import edu.lelyak.repository.impl.WeatherStationRepositoryMock;
@@ -9,18 +10,16 @@ import edu.lelyak.utills.Real;
 import edu.lelyak.utills.constants.*;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.when;
 
 @Configuration
-@ComponentScan(basePackages = "edu.lelyak.repository")
+//@ComponentScan(basePackages = "edu.lelyak.repository")
 public class MockConfig {
 
     //**************************** MOCK BEANS ******************************
@@ -29,8 +28,6 @@ public class MockConfig {
     @Primary
     public WeatherStationService weatherServiceMock() {
         WeatherStationService mock = Mockito.mock(WeatherStationService.class);
-        // TODO: 1/8/2017 configure mock
-
         return mock;
     }
 
@@ -41,8 +38,10 @@ public class MockConfig {
         WeatherStationRepositoryMock stationRepository = Mockito.mock(WeatherStationRepositoryMock.class);
 
         GeoInformation geoInformation = GeoInformation.builder()
-                .latitude(Coordinates.COORDINATE_TEST_VALUE)
-                .longevity(Coordinates.COORDINATE_TEST_VALUE)
+                .location(GeoLocation.builder()
+                        .latitude(Coordinates.COORDINATE_TEST_VALUE)
+                        .longevity(Coordinates.COORDINATE_TEST_VALUE)
+                        .build())
                 .temperature(Temperatures.TEMPERATURE_TEST_VALUE)
                 .windSpeed(WindSpeeds.WIND_SPEED_TEST)
                 .build();
@@ -66,7 +65,7 @@ public class MockConfig {
                 .build());
 
         when(stationRepository.getStations()).thenReturn(stations);
-        when(stationRepository.getStation(anyString())).thenReturn(station_1);
+//        when(stationRepository.getStation(anyString())).thenReturn(station_1);
         when(stationRepository.count()).thenReturn(stations.size());
 
         return stationRepository;
@@ -77,6 +76,12 @@ public class MockConfig {
     @Bean
     @Real
     public WeatherStationService weatherServiceReal() {
-        return  new WeatherStationService();
+        return new WeatherStationService();
+    }
+
+    @Bean
+    @Real
+    public WeatherStationRepositoryMock weatherStationRepositoryReal() {
+        return new WeatherStationRepositoryMock();
     }
 }

@@ -54,7 +54,6 @@
             <artifactId>spring-restdocs-mockmvc</artifactId>
         </dependency>
 
-
         <!--UTILS-->
         <dependency>
             <groupId>org.projectlombok</groupId>

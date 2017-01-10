@@ -1,5 +1,6 @@
 package edu.lelyak.utills.datafactory;
 
+import lombok.SneakyThrows;
 import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.util.ReflectionUtils;
 
@@ -17,12 +18,21 @@ public final class RandomDataSource {
         rand = new Random();
     }
 
-    public Object fillEntity(Object entity) {
+    @SneakyThrows
+    public Object randomiseEntity(Object entity) {
         if (entity != null) {
             Field[] fields = entity.getClass().getDeclaredFields();
             AccessibleObject.setAccessible(fields, true);
 
             for (Field field : fields) {
+                Class aClass = field.getType();
+                boolean isPrimitive = aClass.isPrimitive();
+
+                if (!isPrimitive) {
+                    Object val = field.get(entity);
+                    randomiseEntity(val);
+                }
+
                 if (field.isAnnotationPresent(RandomData.class)) {
                     RandomData data = field.getAnnotation(RandomData.class);
 
