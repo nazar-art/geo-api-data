@@ -6,7 +6,7 @@ public class WeatherStationNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String STATION_NOT_FOUND_EXCEPTION = "Station: " + "%0$s" + " is not found on mocked DB:"
+    private static final String STATION_NOT_FOUND_EXCEPTION = "Station, with id: %0$s is not found on mocked DB."
             + StringUtilities.NEW_LINE + " %1$s";
 
     public WeatherStationNotFoundException() {
