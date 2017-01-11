@@ -12,34 +12,34 @@ import java.util.List;
 public class WeatherStationService implements IStationService {
 
     @Autowired
-    private WeatherStationRepositoryMock weatherRepository;
+    private WeatherStationRepositoryMock repositoryMock;
 
     @Override
     public List<WeatherStation> getAllStations() {
-        return weatherRepository.getStations();
+        return repositoryMock.getStations();
     }
 
     @Override
     public WeatherStation getStation(String id) {
-        return weatherRepository.getStation(id);
+        return repositoryMock.getStation(id);
     }
 
     @Override
     public void addStation(WeatherStation station) {
-        weatherRepository.addStation(station);
+        repositoryMock.addStation(station);
     }
 
     @Override
     public void updateStation(String id, WeatherStation station) {
-        weatherRepository.updateStation(id, station);
+        repositoryMock.updateStation(id, station);
     }
 
     @Override
     public void deleteStation(String id) {
-        weatherRepository.deleteStation(id);
+        repositoryMock.deleteStation(id);
     }
 
     public void deleteAllStations() {
-        weatherRepository.deleteAllStations();
+        repositoryMock.deleteAllStations();
     }
 }

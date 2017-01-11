@@ -3,6 +3,7 @@ package edu.lelyak.repository.impl;
 import edu.lelyak.model.WeatherStation;
 import edu.lelyak.repository.IStationRepository;
 import edu.lelyak.utills.RandomGenerator;
+import edu.lelyak.utills.exception.WeatherStationIdIsNotUniqueException;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
 import lombok.Getter;
 import org.springframework.stereotype.Repository;
@@ -42,6 +43,7 @@ public class WeatherStationRepositoryMock implements IStationRepository {
 
     @Override
     public void addStation(WeatherStation station) {
+        validateUniqueId(station.getId());
         stations.add(station);
     }
 
@@ -71,12 +73,22 @@ public class WeatherStationRepositoryMock implements IStationRepository {
         return stations.size();
     }
 
+    public void deleteAllStations() {
+        stations.clear();
+    }
+
+
     private boolean notExistsIntoDB(String id) {
         return stations.stream()
                 .noneMatch(s -> s.getId().equals(id));
     }
 
-    public void deleteAllStations() {
-        stations.clear();
+    private void validateUniqueId(String id) {
+        boolean isAlreadyDefined = stations.stream()
+                .anyMatch(s -> s.getId().equals(id));
+
+        if (isAlreadyDefined) {
+            throw new WeatherStationIdIsNotUniqueException(id);
+        }
     }
 }
