@@ -3,7 +3,6 @@ package edu.lelyak.utills.config;
 import edu.lelyak.model.GeoInformation;
 import edu.lelyak.model.GeoLocation;
 import edu.lelyak.model.WeatherStation;
-import edu.lelyak.repository.IStationRepository;
 import edu.lelyak.repository.impl.WeatherStationRepositoryMock;
 import edu.lelyak.service.impl.WeatherStationService;
 import edu.lelyak.utills.Real;
@@ -27,13 +26,12 @@ public class MockConfig {
     @Bean
     @Primary
     public WeatherStationService weatherServiceMock() {
-        WeatherStationService mock = Mockito.mock(WeatherStationService.class);
-        return mock;
+        return Mockito.mock(WeatherStationService.class);
     }
 
     @Bean
     @Primary
-    public IStationRepository weatherStationRepositoryMock() {
+    public WeatherStationRepositoryMock weatherStationRepositoryMock() {
         List<WeatherStation> stations = new ArrayList<>();
         WeatherStationRepositoryMock stationRepository = Mockito.mock(WeatherStationRepositoryMock.class);
 
@@ -65,7 +63,6 @@ public class MockConfig {
                 .build());
 
         when(stationRepository.getStations()).thenReturn(stations);
-//        when(stationRepository.getStation(anyString())).thenReturn(station_1);
         when(stationRepository.count()).thenReturn(stations.size());
 
         return stationRepository;

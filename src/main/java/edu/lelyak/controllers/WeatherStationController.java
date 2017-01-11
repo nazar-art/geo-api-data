@@ -14,21 +14,10 @@ public class WeatherStationController {
     @Autowired
     private WeatherStationService weatherService;
 
-
     @RequestMapping(value = "/stations/{id}", method = RequestMethod.GET)
     public WeatherStationResource getWeatherStation(@PathVariable String id) {
         return new WeatherStationResource(weatherService.getStation(id));
     }
-
-    /*@RequestMapping(value = "/stations",method = RequestMethod.GET)
-    public Resources<WeatherStationResource> getAllWeatherStations() {
-
-        List<WeatherStationResource> allStations = weatherService.getAllStations().stream()
-                .map(WeatherStationResource::new)
-                .collect(Collectors.toList());
-
-        return new Resources<>(allStations);
-    }*/
 
     @RequestMapping(value = "/stations",method = RequestMethod.GET)
     public List<WeatherStation> getAllWeatherStations() {
@@ -54,7 +43,5 @@ public class WeatherStationController {
     public void deleteAll() {
         weatherService.deleteAllStations();
     }
-
-
 
 }
