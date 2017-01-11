@@ -39,4 +39,7 @@ public class WeatherStationService implements IStationService {
         weatherRepository.deleteStation(id);
     }
 
+    public void deleteAllStations() {
+        weatherRepository.deleteAllStations();
+    }
 }

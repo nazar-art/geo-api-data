@@ -38,4 +38,11 @@ public class WeatherStationController {
         weatherService.deleteStation(id);
     }
 
+    @RequestMapping(value = "/stations", method = RequestMethod.DELETE)
+    public void deleteAll() {
+        weatherService.deleteAllStations();
+    }
+
+
+
 }

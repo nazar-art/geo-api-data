@@ -76,4 +76,7 @@ public class WeatherStationRepositoryMock implements IStationRepository {
                 .noneMatch(s -> s.getId().equals(id));
     }
 
+    public void deleteAllStations() {
+        stations.clear();
+    }
 }
