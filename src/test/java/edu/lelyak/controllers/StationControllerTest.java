@@ -1,7 +1,8 @@
 package edu.lelyak.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
+import edu.lelyak.model.Station;
 import edu.lelyak.repository.WeatherStationRepository;
 import edu.lelyak.service.impl.WeatherStationService;
 import edu.lelyak.utills.config.AppConfig;
@@ -80,7 +81,7 @@ public class StationControllerTest {
 
     @Test
     public void createStation() throws Exception {
-        String bookmarkJson = convertToJson(WeatherStation.builder().id("newOne").name("New name").build());
+        String bookmarkJson = convertToJson(Station.builder().id("newOne").name("New name").build());
 
         this.mockMvc.perform(post("/stations")
                 .contentType(contentType)
@@ -89,7 +90,7 @@ public class StationControllerTest {
     }
 
 
-    protected String convertToJson(WeatherStation station) throws IOException {
+    protected String convertToJson(Station station) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(station);
     }

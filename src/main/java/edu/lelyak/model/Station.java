@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class WeatherStation {
+public class Station {
 
     @Id
     private String id;

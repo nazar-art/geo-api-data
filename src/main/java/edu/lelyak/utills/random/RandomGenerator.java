@@ -1,6 +1,6 @@
 package edu.lelyak.utills.random;
 
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
 import edu.lelyak.utills.constants.Coordinates;
 import edu.lelyak.utills.constants.Temperatures;
 import edu.lelyak.utills.constants.WindSpeeds;
@@ -10,8 +10,8 @@ public final class RandomGenerator {
     public static final int RANDOM_POINTS_LIMIT = 4;
     private static RandomDataSource dataSource = new RandomDataSource();
 
-    public static WeatherStation fillWeatherStation(String id) {
-        return WeatherStation.builder()
+    public static Station fillWeatherStation(String id) {
+        return Station.builder()
                 .id(id)
                 .name(id.toUpperCase().concat(" Description"))
                 .latitude(dataSource.getNumericDouble(Coordinates.MIN_COORDINATE, Coordinates.MAX_COORDINATE))

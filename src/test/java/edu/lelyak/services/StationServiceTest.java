@@ -1,6 +1,7 @@
 package edu.lelyak.services;
 
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
+import edu.lelyak.model.Station;
 import edu.lelyak.service.impl.WeatherStationService;
 import edu.lelyak.utills.Real;
 import edu.lelyak.utills.config.AppConfig;
@@ -18,19 +19,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-public class WeatherStationServiceTest {
+public class StationServiceTest {
 
     @Autowired
     @Real
     private WeatherStationService weatherService;
 
-    private WeatherStation testStationSample;
+    private Station testStationSample;
 
     public static final double DELTA_FOR_DOUBLE_COMPARISON = 0.001;
 
     @Before
     public void setUp() throws Exception {
-        testStationSample = WeatherStation.builder()
+        testStationSample = Station.builder()
                 .id(Ids.ID_TEST_STATION)
                 .name(Names.NAME_STATION_TEST)
                 .latitude(Coordinates.COORDINATE_TEST_VALUE)

@@ -1,6 +1,6 @@
 package edu.lelyak;
 
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
 import edu.lelyak.repository.WeatherStationRepository;
 import edu.lelyak.utills.random.RandomGenerator;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +22,7 @@ public class GeoApiDataApplication {
         return (evt) -> Arrays.asList("huston,alaska,washington,oklahoma,dakota,montana,nevada,colorado".split(","))
                 .forEach(
                         s -> {
-                            WeatherStation station = RandomGenerator.fillWeatherStation(s);
+                            Station station = RandomGenerator.fillWeatherStation(s);
                             repository.save(station);
                         });
     }

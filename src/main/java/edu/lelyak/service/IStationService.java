@@ -1,17 +1,18 @@
 package edu.lelyak.service;
 
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
+import edu.lelyak.model.Station;
 
 import java.util.List;
 
 public interface IStationService {
-    List<WeatherStation> getAllStations();
+    List<Station> getAllStations();
 
-    WeatherStation getStation(String id);
+    Station getStation(String id);
 
-    void addStation(WeatherStation station);
+    void addStation(Station station);
 
-    void updateStation(String id, WeatherStation station);
+    void updateStation(String id, Station station);
 
     void deleteStation(String id);
 }

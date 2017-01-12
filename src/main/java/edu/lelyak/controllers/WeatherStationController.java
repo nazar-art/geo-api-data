@@ -1,6 +1,6 @@
 package edu.lelyak.controllers;
 
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
 import edu.lelyak.service.impl.WeatherStationService;
 import edu.lelyak.web.WeatherStationResource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +21,17 @@ public class WeatherStationController {
     }
 
     @RequestMapping(value = "/stations",method = RequestMethod.GET)
-    public List<WeatherStation> getAllWeatherStations() {
+    public List<Station> getAllWeatherStations() {
         return stationService.getAllStations();
     }
 
     @RequestMapping(value = "/stations", method = RequestMethod.POST)
-    public void addWeatherStation(@RequestBody WeatherStation station) {
+    public void addWeatherStation(@RequestBody Station station) {
         stationService.addStation(station);
     }
 
     @RequestMapping(value = "/stations/{id}", method = RequestMethod.PUT)
-    public void updateWeatherStation(@PathVariable String id, @RequestBody WeatherStation station) {
+    public void updateWeatherStation(@PathVariable String id, @RequestBody Station station) {
         stationService.updateStation(id, station);
     }
 

@@ -1,6 +1,7 @@
 package edu.lelyak.service.impl;
 
-import edu.lelyak.model.WeatherStation;
+import edu.lelyak.model.Station;
+import edu.lelyak.model.Station;
 import edu.lelyak.repository.WeatherStationRepository;
 import edu.lelyak.service.IStationService;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
@@ -17,26 +18,26 @@ public class WeatherStationService implements IStationService {
     private WeatherStationRepository repository;
 
     @Override
-    public List<WeatherStation> getAllStations() {
-        List<WeatherStation> result = new ArrayList<>();
+    public List<Station> getAllStations() {
+        List<Station> result = new ArrayList<>();
         repository.findAll().forEach(result::add);
         return result;
     }
 
     @Override
-    public WeatherStation getStation(String id) {
+    public Station getStation(String id) {
         validateStation(id);
         return repository.findById(id)
                 .orElse(null);
     }
 
     @Override
-    public void addStation(WeatherStation station) {
+    public void addStation(Station station) {
         repository.save(station);
     }
 
     @Override
-    public void updateStation(String id, WeatherStation station) {
+    public void updateStation(String id, Station station) {
         validateStation(id);
         repository.save(station);
     }
