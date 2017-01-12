@@ -1,0 +1,25 @@
+{
+  "id" : "paris",
+  "name" : "Paris name",
+  "longevity" : 45.0,
+  "latitude" : 35.0,
+  "temperature" : 10,
+  "windSpeed" : 17,
+  "points" : [ {
+    "x" : 68.0,
+    "y" : 54.0,
+    "type" : "Point"
+  }, {
+    "x" : 68.0,
+    "y" : 54.0,
+    "type" : "Point"
+  }, {
+    "x" : 68.0,
+    "y" : 54.0,
+    "type" : "Point"
+  }, {
+    "x" : 68.0,
+    "y" : 54.0,
+    "type" : "Point"
+  } ]
+}
