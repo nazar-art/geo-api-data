@@ -1,10 +1,12 @@
 package edu.lelyak.service;
 
 import edu.lelyak.model.Station;
-import edu.lelyak.model.Station;
 
 import java.util.List;
 
+/**
+ * Interface which defines main operation for service layer.
+ */
 public interface IStationService {
     List<Station> getAllStations();
 

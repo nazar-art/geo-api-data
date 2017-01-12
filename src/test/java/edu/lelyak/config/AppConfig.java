@@ -1,4 +1,4 @@
-package edu.lelyak.utills.config;
+package edu.lelyak.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -2,10 +2,9 @@ package edu.lelyak.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.lelyak.model.Station;
-import edu.lelyak.model.Station;
 import edu.lelyak.repository.WeatherStationRepository;
 import edu.lelyak.service.impl.WeatherStationService;
-import edu.lelyak.utills.config.AppConfig;
+import edu.lelyak.config.AppConfig;
 import edu.lelyak.utills.constants.Ids;
 import edu.lelyak.utills.constants.Names;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
@@ -29,6 +28,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Class for testing Station controller leyer.
+ */
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = AppConfig.class)

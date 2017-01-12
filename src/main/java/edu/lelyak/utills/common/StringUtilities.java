@@ -2,6 +2,9 @@ package edu.lelyak.utills.common;
 
 import java.util.Formatter;
 
+/**
+ * Utility class for common string operations.
+ */
 public final class StringUtilities {
 
     public static final String NEW_LINE = System.getProperty("line.separator");

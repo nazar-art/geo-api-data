@@ -2,6 +2,10 @@ package edu.lelyak.utills.exception;
 
 import edu.lelyak.utills.common.StringUtilities;
 
+/**
+ * Exception class which defines when station id is not unique.
+ * Also, that it is already stored in DB.
+ */
 public class WeatherStationIdIsNotUniqueException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;

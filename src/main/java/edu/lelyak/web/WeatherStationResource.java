@@ -8,7 +8,9 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
-
+/**
+ * Add HATESOAS support for weather station request.
+ */
 public class WeatherStationResource extends ResourceSupport {
 
     @Getter

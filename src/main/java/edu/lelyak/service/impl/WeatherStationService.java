@@ -1,9 +1,9 @@
 package edu.lelyak.service.impl;
 
 import edu.lelyak.model.Station;
-import edu.lelyak.model.Station;
 import edu.lelyak.repository.WeatherStationRepository;
 import edu.lelyak.service.IStationService;
+import edu.lelyak.utills.exception.WeatherStationIdIsNotUniqueException;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Service layer, which describes logic of application.
+ */
 @Service
 public class WeatherStationService implements IStationService {
 
@@ -26,25 +29,26 @@ public class WeatherStationService implements IStationService {
 
     @Override
     public Station getStation(String id) {
-        validateStation(id);
+        validateStationDBPresence(id);
         return repository.findById(id)
                 .orElse(null);
     }
 
     @Override
     public void addStation(Station station) {
+        validateStationId(station.getId());
         repository.save(station);
     }
 
     @Override
     public void updateStation(String id, Station station) {
-        validateStation(id);
+        validateStationDBPresence(id);
         repository.save(station);
     }
 
     @Override
     public void deleteStation(String id) {
-        validateStation(id);
+        validateStationDBPresence(id);
         repository.delete(id);
     }
 
@@ -56,8 +60,16 @@ public class WeatherStationService implements IStationService {
         return repository.count();
     }
 
-    public void validateStation(String stationId) {
+
+    private void validateStationDBPresence(String stationId) {
         repository.findById(stationId)
                 .orElseThrow(() -> new WeatherStationNotFoundException(stationId));
+    }
+
+    private void validateStationId(String stationId) {
+        repository.findById(stationId)
+                .ifPresent(s -> {
+                    throw new WeatherStationIdIsNotUniqueException(stationId);
+                });
     }
 }

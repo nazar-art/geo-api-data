@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.Embeddable;
 
+/**
+ * Class which describes geojson point.
+ */
 @Data
 @Builder
 @AllArgsConstructor

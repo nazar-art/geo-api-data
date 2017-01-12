@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.List;
 
+/**
+ * Class which represent weather Station model.
+ */
 @Data
 @Builder
 @AllArgsConstructor

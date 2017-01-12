@@ -10,6 +10,13 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
 
+/**
+ * This application uses RESTful API
+ * which returns in geojson format list of weather stations.
+ *
+ * @author Nazar_Lelyak.
+ * @version 0.5 12-01-2017
+ */
 @SpringBootApplication
 public class GeoApiDataApplication {
 

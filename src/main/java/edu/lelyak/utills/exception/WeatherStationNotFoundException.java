@@ -4,6 +4,9 @@ import edu.lelyak.utills.common.StringUtilities;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Represents when weather station with defined id is not presented at DB.
+ */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class WeatherStationNotFoundException extends RuntimeException {
 
