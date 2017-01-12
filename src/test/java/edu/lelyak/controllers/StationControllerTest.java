@@ -2,9 +2,9 @@ package edu.lelyak.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.lelyak.model.WeatherStation;
-import edu.lelyak.repository.impl.WeatherStationRepositoryMock;
+import edu.lelyak.repository.WeatherStationRepository;
 import edu.lelyak.service.impl.WeatherStationService;
-import edu.lelyak.utills.config.MockConfig;
+import edu.lelyak.utills.config.AppConfig;
 import edu.lelyak.utills.constants.Ids;
 import edu.lelyak.utills.constants.Names;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = MockConfig.class)
+@ContextConfiguration(classes = AppConfig.class)
 public class StationControllerTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
@@ -40,13 +40,14 @@ public class StationControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private WeatherStationRepositoryMock repositoryMock;
+    private WeatherStationRepository repository;
     @Autowired
     private WeatherStationService stationService;
 
     @Before
     public void setUp() throws Exception {
         this.mockMvc = MockMvcBuilders.standaloneSetup(new WeatherStationController()).build();
+
     }
 
     @Test(expected = WeatherStationNotFoundException.class)
@@ -68,7 +69,7 @@ public class StationControllerTest {
         mockMvc.perform(get("/stations"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(repositoryMock.count())))
+                .andExpect(jsonPath("$", hasSize((int) repository.count())))
                 .andExpect(jsonPath("$[0].id", is(Ids.ID_1)))
                 .andExpect(jsonPath("$[0].name", is(Names.NAME_1)))
                 .andExpect(jsonPath("$[1].id", is(Ids.ID_2)))
