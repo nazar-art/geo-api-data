@@ -23,3 +23,7 @@ Also, some predefined data is saved to H2 in memory DD, thus you can access, for
 With Postman application you can check main operation: POST, DELETE, UPDATE.
 
 For POST you can use `request_example.json` example which is located under 'resource' folder.
+
+
+BTW project contains Lombok framework annotations.   
+For Intellij just download `Lombok plugin` => import project -> open settings check `annotation processing enabled`.
