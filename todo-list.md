@@ -1,3 +1,1 @@
-- add support for H2 DB
-- reformat models for entities 
-- move from list mock to H2 DB
+- write unit test for controller
