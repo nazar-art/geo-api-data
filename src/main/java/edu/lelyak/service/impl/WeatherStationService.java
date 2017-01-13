@@ -29,9 +29,8 @@ public class WeatherStationService implements IStationService {
 
     @Override
     public Station getStation(String id) {
-        validateStationDBPresence(id);
         return repository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new WeatherStationNotFoundException(id));
     }
 
     @Override

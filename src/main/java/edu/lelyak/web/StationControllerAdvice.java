@@ -1,5 +1,6 @@
 package edu.lelyak.web;
 
+import edu.lelyak.utills.exception.WeatherStationIdIsNotUniqueException;
 import edu.lelyak.utills.exception.WeatherStationNotFoundException;
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,14 @@ public class StationControllerAdvice {
     @ResponseBody
     @ExceptionHandler(WeatherStationNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    VndErrors userNotFoundExceptionHandler(WeatherStationNotFoundException ex) {
+    VndErrors stationNotFoundExceptionHandler(WeatherStationNotFoundException ex) {
+        return new VndErrors("error", ex.getMessage());
+    }
+
+    @ResponseBody
+    @ExceptionHandler(WeatherStationIdIsNotUniqueException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    VndErrors stationIdIsNotUniqueExceptionHandler(WeatherStationIdIsNotUniqueException ex) {
         return new VndErrors("error", ex.getMessage());
     }
 }
